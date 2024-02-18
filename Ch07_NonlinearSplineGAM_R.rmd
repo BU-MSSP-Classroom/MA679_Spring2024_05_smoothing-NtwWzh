@@ -79,7 +79,8 @@ Use nonlinear methods discussed in ch 7 of the book.  Can you make a better pred
 
 Your code:
 ```{r,echo=TRUE}
-fit_back1 <- regsubsets(SalePrice~`Bsmt Half Bath`+`Gr Liv Area`+, data=ames_raw_2008,nvmax=19,method="backward")
+fit_back1 <- regsubsets(SalePrice~`Bsmt Half Bath`+`Gr Liv Area`+`Overall Qual`+
+                          `Gr Liv Area`+`Yr Sold`+``, data=ames_raw_2008,nvmax=19,method="backward")
 fit_summary1 <- summary(fit_back1)
 
 which.min(fit_summary1$cp)
