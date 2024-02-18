@@ -80,19 +80,21 @@ Use nonlinear methods discussed in ch 7 of the book.  Can you make a better pred
 Your code:
 ```{r,echo=TRUE}
 fit_back1 <- regsubsets(SalePrice~`Bsmt Half Bath`+`Gr Liv Area`+`Overall Qual`+
-                          `Gr Liv Area`+`Yr Sold`+``, data=ames_raw_2008,nvmax=19,method="backward")
+                          `Gr Liv Area`+`Yr Sold`+`Pool Area`, data=ames_raw_2008,nvmax=19,method="backward")
 fit_summary1 <- summary(fit_back1)
 
 which.min(fit_summary1$cp)
 which.min(fit_summary1$bic)
 plot(fit_summary1$cp,xlab = "variables",ylab="cp")
 plot(fit_summary1$bic,xlab = "variables",ylab="bic")
+
+pred1 <- predict(fit_summary1,newdata=ames_raw_2009)
 ```
 
 Your answer:
 
 ~~~
-Please write your answer in full sentences.
+Looks like there is error when i try to predicts
 
 
 ~~~
@@ -110,14 +112,21 @@ Try the method described in Ch7.  See if you can improve the performance.
 
 Your code:
 ```{r,echo=TRUE}
-#
-#
+fit_COVID <- lm(SURVIVED_bin~poly(CARDIOVASCULAR,2),data=Train_COVID)
+coef(summary(fit_COVID))
+
+cardiolims <- range(Train_COVID$CARDIOVASCULAR)
+cardiogird <- seq(from = cardiolims[1], to = cardiolims[2])
+predis <- predict(fit_COVID, newdata = Test_COVID)
+sebinds <- cbind(preds$fit+ 2 * preds$se.fit, preds$fit- 2 * preds$se.fit)
+par(mfrow=c(1,2),mar=c(4.5,4.5,1,1),oma=c(0,0,4,0))
+plot(Train_COVID$CARDIOVASCULAR,Train_COVID$SURVIVED_bin,xlim=cardiolims,cex=.5,col='blue')
 ```
 
 Your answer:
 
 ~~~
-Please write your answer in full sentences.
+It looks like the plot has problem
 
 
 ~~~
