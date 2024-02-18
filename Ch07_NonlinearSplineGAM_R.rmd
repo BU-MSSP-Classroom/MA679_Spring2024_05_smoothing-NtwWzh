@@ -219,8 +219,17 @@ Fit some of the non-linear models investigated in chapter 7 to the `Auto` data s
 
 Your code:
 ```{r,echo=TRUE}
-#
-#
+fit1 <- lm(mpg~horsepower ,data=Auto)
+
+fit2 <- lm(mpg~horsepower+horsepower^2 ,data=Auto)
+
+fit3 <- lm(mpg~horsepower+horsepower^2+horsepower^3 ,data=Auto)
+
+fit4 <- lm(mpg~horsepower+horsepower^2+horsepower^3+horsepower^4 ,data=Auto)
+
+fit5 <- lm(mpg~horsepower+horsepower^2+horsepower^3+horsepower^4+horsepower^5 ,data=Auto)
+
+anova(fit1,fit2,fit3,fit4,fit5)
 ```
 
 Your answer:
